@@ -1,0 +1,56 @@
+<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <% if (option == 'dashboard') { %>
+                    <li class = "active">
+                    <% } else {%>
+                    <li>
+                    <% }%>
+                        <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <% if (option == 'profile') { %>
+                    <li class = "active">
+                    <% } else {%>
+                    <li>
+                    <% }%>
+                        <a href="/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    </li>
+                    <% if (option == 'tables') { %>
+                    <li class = "active">
+                    <% } else {%>
+                    <li>
+                    <% }%>
+                        <a href="/tables"><i class="fa fa-fw fa-table"></i> My List</a>
+                    </li>
+                    <% if (option == 'forms') { %>
+                    <li class = "active">
+                    <% } else {%>
+                    <li>
+                    <% }%>
+                        <a href="/forms"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="dashboard-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li>
+                </ul>
+            </div>
