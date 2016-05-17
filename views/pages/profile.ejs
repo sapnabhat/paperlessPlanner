@@ -6,14 +6,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Forms
+                            Profile
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Forms
+                                <i class="fa fa-edit"></i> User Profile
                             </li>
                         </ol>
                     </div>
@@ -22,113 +22,117 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-
-                        <form role="form">
+                        <div class="alert alert-info">
+                            <a class="close" data-dismiss="alert">×</a> 
+                            <strong>Welcome to Paperless!</strong> Please fill your profile information below!
+                        </div>
+                        <form role="form" action= "/profile" method= "post">
 
                             <div class="form-group">
+                             <span class="glyphicon glyphicon-user"></span>
                                 <label>Full Name</label>
-                                <input class="form-control" placeholder="Full Name">
+                                <input class="form-control" name="fullName" placeholder="Full Name" <%if (userDetails != undefined && userDetails.profile.fullName) {%>value = "<%=userDetails.profile.fullName%>"<%}%> required>
                             </div>
 
                             <div class="form-group">
+                            <span class="glyphicon glyphicon-envelope"></span> 
                                 <label>Email ID</label>
-                                <input class="form-control" placeholder="email@example.com">
+                                <input class="form-control" name="email"  <%if (userDetails != undefined && userDetails.profile.emailId) {%>value = <%=userDetails.profile.emailId%><%}%> type="email" placeholder="email@example.com" required>
                             </div>
 
-                             <div class="form-group">
+                            <div class="form-group">
+                            <span class="glyphicon glyphicon-education"></span>
                                 <label>Highest Education</label>
                                 <p>
                                 <label>College Name</label>
-                                <input class="form-control" placeholder="College Name">
+                                <input class="form-control" <%if (userDetails != undefined && userDetails.profile.collegeName) {%>value = "<%=userDetails.profile.collegeName%>"<%}%> name="collegeName" placeholder="College Name">
                                 </p>
                                 <label>Degree</label>
-                                <input class="form-control" placeholder="Degree Name">
+                                <input class="form-control" <%if (userDetails != undefined && userDetails.profile.degree) {%>value = "<%=userDetails.profile.degree%>"<%}%> name="degree" placeholder="Degree Name">
                             </div> 
 
                             <div class="form-group">
+                                <span class="glyphicon glyphicon-certificate"></span>
                                 <label>Skills</label>
+                                <%
+                                 Array.prototype.contains = function(obj) {
+                                        var i = this.length;
+                                        while (i--) {
+                                            if (this[i] == obj) {
+                                                return true;
+                                            }
+                                        }
+                                        return false;
+                                    }
+                                %>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">C++
+                                        <input type="checkbox" name="skills" 
+                                        <%if (userDetails != undefined && userDetails.profile.skills.contains("1")){%>checked<%}%> value="1">C++
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">Java
+                                        <input type="checkbox" name="skills" <%if (userDetails != undefined && userDetails.profile.skills.contains("2")){%>checked<%}%> value="2">Java
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">C
+                                        <input type="checkbox" <%if (userDetails != undefined && userDetails.profile.skills.contains("3")){%>checked<%}%> name="skills" value="3">C
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">C#
+                                        <input type="checkbox" name="skills" <%if (userDetails != undefined && userDetails.profile.skills.contains("4")){%>checked<%}%> value="4">C#
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">Python
+                                        <input type="checkbox"  name="skills" <%if (userDetails != undefined && userDetails.profile.skills.contains("5")){%>checked<%}%> value="5">Python
                                     </label>
                                 </div>
+                                <label class="checkbox">
+                                <input type="checkbox"  name="skills" value="6" checked="checked" style="opacity:0; position:absolute; left:9999px;"></label>
                             </div>
 
                             <div class="form-group">
-                                <label>Recent Experience</label>
+                              <span class="glyphicon glyphicon-pencil"></span>
+                                <label>Recent/Current Work Experience</label>
                                 <p>
                                 <label>Job Title</label>
-                                <input class="form-control" placeholder="Job Title">
+                                <input class="form-control" <%if (userDetails != undefined && userDetails.profile.jobTitle) {%>value = "<%=userDetails.profile.jobTitle%>"<%}%> name="jobTitle" placeholder="Job Title">
                                 </p>
                                 <label>Company Name</label>
-                                <input class="form-control" placeholder="Company Name">
+                                <input class="form-control" <%if (userDetails != undefined && userDetails.profile.companyName) {%>value = "<%=userDetails.profile.companyName%>"<%}%>name="companyName" placeholder="Company Name">
                             </div> 
 
                             <div class="form-group">
-                                <label>Number of years of experience</label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>1 
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">2 
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">3
-                                    </label>
-                                </div>
+                            <span class="glyphicon glyphicon-list"></span>
+                                <label>Years of experience</label>
+                                <select class="c-select" name="experienceYears" required>
+                                  <option value="1" selected="selected"
+                                  <%if (userDetails != undefined && userDetails.profile.experienceYears == "1"){%>selected="selected"<%}%> >0-2 years</option>
+                                  <option value="2"
+                                  <%if (userDetails != undefined && userDetails.profile.experienceYears == "2"){%>selected="selected"<%}%>>3-5 years</option>
+                                  <option value="3"
+                                  <%if (userDetails != undefined && userDetails.profile.experienceYears == "3"){%>selected="selected"<%}%>>5+ years</option>
+                                </select>
                             </div>
-                            
-
-                            <div class="form-group">
-                                <label>Resume</label>
-                                <input type="file">
-                            </div>
-
-
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
-
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </form>
-
                     </div>
                     <div class="col-lg-6">
-
-                        
-
-                        <form role="form">
-                            <div class="form-group">
-                                <label>Photo Upload</label>
-                                <input type="file">
-                            </div>
-                            
-
+                        <form id ="photoFormUpload" enctype="multipart/form-data" action="/photo" method="post">
+                        <%if (userDetails != undefined && userDetails.profile.photo) {%>
+                        <img src="<%=userDetails.profile.photo%>" class="profileImage img-responsive"/>
+                        <%} else{%>
+                        <img src="/assets/img/profile.png" class="profileImage img-responsive"/>
+                        <%}%>
+                        <label> Profile Image </label>
+                        <input type="file" id="userPhoto" name="userPhoto" /><br>
+                        <input class="form-control" type="submit" value="Upload Profile Picture" id="photoUpload" name="submit">
+                        <span id="status"></span>
                         </form>
-
                     </div>
                 </div>
                 <!-- /.row -->

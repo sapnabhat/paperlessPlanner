@@ -1,3 +1,4 @@
+ <!--shristi-->
  <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -6,11 +7,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Tables
+                            My Application List
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-table"></i> Tables
@@ -22,311 +23,62 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-                        <h2>Bordered Table</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h2>Bordered with Striped Rows</h2>
+                        <h2>Application Form Details</h2>
+                        <%if (applicationList.length != 0){%>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
+                                        <th>Company Name</th> 
+                                        <th>Applied On</th>
+                                        <th>Status</th>
+                                        <th>Follow Up</th>
+                                        <th>Reminder Set</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
+                                    
+                                    <%
+                                    for (var i = 0; i < applicationList.length; i++) { 
+                                          %>
+                                    <tr company-id="<%= applicationList[i]._id %>">
+                                      <td><a class="company_edit" company-id="<%= applicationList[i]._id %>" company-name="<%=applicationList[i].company%>" company-contact="<%= applicationList[i].contact%>"
+                                        email-name="<%= applicationList[i].email%>" appliedOn-name="<%= applicationList[i].appliedOn%>" status-name="<%= applicationList[i].status%>" site-name="<%= applicationList[i].site%>" skillsRequired-name="<%= applicationList[i].skillsRequired%>" note-name="<%= applicationList[i].note%>" followUpOn-name="<%= applicationList[i].followUpOn%>" reminder-name="<%= applicationList[i].remind%>" ><%= applicationList[i].company %></a></td>
+                                      <%
+                                        {
+                                            var status = "Accepted";
+                                            switch (applicationList[i].status) 
+                                            {
+                                                case "1":
+                                                    status="Accepted";
+                                                    break;
+                                                case "2":
+                                                    status="Reject";
+                                                    break;
+                                                case "3":
+                                                    status="In Progress";
+                                                    break;    
+                                                default:
+                                                    status="Default";
+                                                    break;
+                                            }
+                                        }
+                                      %>
+                                      <td><%= applicationList[i].appliedOn %></td>
+                                      <td><%= status %></td>
+                                      <td><%= applicationList[i].followUpOn %></td>
+                                      <td><%= applicationList[i].remind %></td>
+                                    </tr>    
+                                    <% } %>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2>Basic Table</h2>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <%} else {%>
+                        <div class="alert alert-info">
+                            <a class="close" data-dismiss="alert">×</a> 
+                            <strong>Welcome to Paperless!</strong> You have no application history!
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h2>Striped Rows</h2>
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2>Contextual Classes</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="active">
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr class="success">
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr class="warning">
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h2>Bootstrap Docs</h2>
-                        <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                        <%}%>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -336,3 +88,123 @@
 
  </div>
  <!-- /#page-wrapper -->
+
+<!-- Pooja Added -->
+<!-- Modal -->
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Form Details
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                            <form id="updateForm" role="form" method="post" action="/form/update">
+
+                            <div class="form-group">
+                                <label>Company Name</label>
+                                <input class="form-control" type="text" name="company" placeholder="Company Name" id="company" required="true"> 
+                                <input class="form-control" type="hidden" name="id" id="company-id">                  
+                            </div>
+
+                            <div class="form-group">
+                                <label>Contact Person's name</label>
+                            <input class="form-control" placeholder="Contact Name" name="contact" id="contact" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email of Contact Person</label>
+                            <input class="form-control" type="email" placeholder="email@companyname.com" name="email" id="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Applied On</label>
+                                <input class="form-control" type="date" max="2016-12-31" placeholder="Applied on" name="appliedOn" id="appliedOn" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Application Status</label>
+                                <select class="c-select" name="status" id="status" required>
+                                  <option value="1">Accept</option>
+                                  <option value="2">Reject</option>
+                                  <option value="3">In Progress</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Site</label>
+                                <input class="form-control" placeholder="site.com" id="site" name="site">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Skill(s) Required</label>
+                                <div class="checkbox" name="skills">
+                                    <label>
+                                        <input type="checkbox" id="skillC" value="C" >C
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="skillCpp" value="C++">C++
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="skillJava" value="Java">Java
+                                    </label>
+                                </div>
+                                 <div class="form-group">
+                                <label>Other</label>
+                                <input class="form-control">
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label> Note</label>
+                                <textarea class="form-control" rows="3" id="note" name="note"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Follow Up On</label>
+                                <input class="form-control" type="date" id="followOn" name="followOn" max="2020-12-31" required>
+                            </div>
+
+                             <div class="form-group">
+                                <label>Set Reminder</label>
+                                <div class="radio">
+                                <select class="c-select" name="reminder" id="reminder" required>
+                                  <option value="1">Yes</option>
+                                  <option value="2">No</option>
+                                </select>
+                                </div>
+                            </div>
+
+                        </form>
+                
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                            Close
+                </button>
+                <button id="save" type="button" class="btn btn-primary">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

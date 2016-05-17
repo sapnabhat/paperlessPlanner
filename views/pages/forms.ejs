@@ -6,108 +6,117 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Forms
+                            New Application Form
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Company Detail
+                                <i class="fa fa-edit"></i> Application Form
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
 
+<!--Pooja Added -->
+
                 <div class="row">
                     <div class="col-lg-6">
 
-                        <form role="form">
+                        <form role="form" action="/forms" method="post">
 
                             <div class="form-group">
-                                <label>Comapany Name</label>
-                                <input class="form-control" placeholder="Comapany Name">  
+                            <span class="glyphicon glyphicon-user"></span>
+                                <label>Company Name</label>
+                                  
+                                <input class="form-control" type="text" placeholder="Company Name" name="company" id="company" required="true">  
                             </div>
 
                             <div class="form-group">
-                                <label>Contact</label>
-                                <input class="form-control" placeholder="Contact Information">
+                            <span class="glyphicon glyphicon-align-right"></span>
+                                <label>Contact Person's Name</label>
+                            <input class="form-control" placeholder="Contact Name" name="contact" id="contact" required>
                             </div>
 
                             <div class="form-group">
-                                <label>Email Contact</label>
-                                <input class="form-control" placeholder="email@companyname.com">
+                                <span class="glyphicon glyphicon-envelope"> </span>
+                                <label>Email of Contact Person</label>
+                            <input class="form-control" type="email" placeholder="email@companyname.com" name="email" id="email" required>
                             </div>
 
                             <div class="form-group">
+                                <span class="glyphicon glyphicon-education"></span>
                                 <label>Applied On</label>
-                                <input class="form-control" type="date" name="bday" max="2005-12-31" placeholder="Applied on">
+                                <input class="form-control" type="date" max="2016-12-31" placeholder="Applied on" name="appliedOn" id="appliedOn" required>
                             </div>
                             
-
                             <div class="form-group">
-                                <label>Status</label>
-                                <select multiple class="form-control">
-                                    <option>Reject</option>
-                                    <option>Accept</option>
-                                    <option>On Hold </option>
+                                <span class="glyphicon glyphicon-stats"></span>
+                                <label>Application Status</label>
+                                <select class="c-select" name="status" id="status" required>
+                                  <option value="1" selected="selected">Accept</option>
+                                  <option value="2">Reject</option>
+                                  <option value="3">In Progress</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Site</label>
-                                <input class="form-control" placeholder="Site.com">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <label>Website/URL</label>
+                                <input class="form-control" placeholder="site.com" name=site>
                             </div>
 
                             <div class="form-group">
-                                <label>Skill Required</label>
-                                <div class="checkbox">
+                                <span class="glyphicon glyphicon-certificate"></span>
+                                <label>Skill(s) Required</label>
+                                <div class="checkbox" name>
                                     <label>
-                                        <input type="checkbox" value="">C
+                                        <input type="checkbox" value="C" name="skills" >C
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">C++
+                                        <input type="checkbox" value="C++" name="skills">C++
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="">Java
+                                        <input type="checkbox" value="Java" name="skills">Java
                                     </label>
                                 </div>
                                  <div class="form-group">
+                                <span class="glyphicon glyphicon-tasks"></span>
                                 <label>Other</label>
                                 <input class="form-control">
                             </div>
                             </div>
 
                             <div class="form-group">
-                                <label> Note</label>
-                                <textarea class="form-control" rows="3"></textarea>
+                            <span class="glyphicon glyphicon-comment"></span>
+                                <label> Notes</label>
+                                <textarea class="form-control" rows="3" name="note"></textarea>
                             </div>
 
-                           <div class="form-group">
-                                <label>Follow-On</label>
-                                <input class="form-control" type="date" name="bday" max="2005-12-31">
+                            <div class="form-group">
+                                          <span class="glyphicon glyphicon-calendar"></span>
+                                <label>Follow Up On</label>
+                                <input class="form-control" type="date" name="followOn" max="2020-12-31" required>
                             </div>
 
                              <div class="form-group">
-                                <label>Reminder</label>
-                             <input class="form-control" type="date" name="bday" max="2005-12-31">
+                             <span class="glyphicon glyphicon-calendar"></span>
+                                <label>Set Reminder</label>
+                                <div class="radio">
+                                <select class="c-select" name="reminder" id="reminder" required>
+                                  <option selected="selected" value="1">Yes</option>
+                                  <option value="2">No</option>
+                                </select>
+                                </div>
                             </div>
-                                
-                            
 
-                            
-
-                            
-
-                            
-
-                            <button type="submit" class="btn btn-default">Submit Button</button>
-                            <button type="reset" class="btn btn-default">Reset Button</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
 
                         </form>
 
