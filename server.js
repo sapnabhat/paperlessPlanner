@@ -42,7 +42,7 @@ app.use("/signup",function(request, response, next){
         var session = Guid.create().toString();
         response.cookie("currentSessionId", session, {expires: expiresAt});
         app.locals.userSession = session;
-        console.log("inside value"+session);
+        console.log("inside value "+session);
     }
     next();
 });
@@ -185,12 +185,12 @@ app.get("/forms", [middleware.isAuthenticated,middleware.isProfileCompleted], fu
 //shristi
 app.get("/tables", [middleware.isAuthenticated,middleware.isProfileCompleted],function (request, response) { 
 
-        console.log(app.locals.username);
+        //console.log(app.locals.username);
         myData.getApplications(app.locals.username).then(function(applicationList) {
         app.locals.applicationList = applicationList;
         response.render("pages/tables",{layout: true, choice: 'tables'});
         }, function(errorMessage) {
-            console.log("errorMessage"+errorMessage)
+            //console.log("errorMessage"+errorMessage)
             response.status(500).json({ error: errorMessage });
         });
 
@@ -207,17 +207,17 @@ app.get("/profile", middleware.isAuthenticated, function (request, response) {
             else
             {
                 var fullName = userDetails.profile.fullName;
-                console.log("fullName: "+fullName);
+                //console.log("fullName: "+fullName);
                 var emailId = userDetails.profile.emailId;
                 var collegeName = userDetails.profile.collegeName;
                 var degree = userDetails.profile.degree;
                 var skills = userDetails.profile.skills;
-                console.log("skills"+skills);
+                //console.log("skills"+skills);
                 var jobTitle = userDetails.profile.jobTitle;
                 var companyName = userDetails.profile.companyName;
-                console.log("companyName: "+companyName);
+                //console.log("companyName: "+companyName);
                 var experienceYears = userDetails.profile.experienceYears;
-                console.log("experienceYears"+experienceYears);
+                //console.log("experienceYears"+experienceYears);
                 app.locals.userDetails = userDetails;
                 response.render("pages/profile",{layout: true, choice: 'profile'});
             }
@@ -238,13 +238,13 @@ app.post("/forms", function (request, response){
         var contact = xss(request.body.contact);
         var email = xss(request.body.email);
         var appliedOn = request.body.appliedOn;
-        console.log("applied on"+appliedOn);
+        //console.log("applied on"+appliedOn);
         var status = request.body.status;
         var site = xss(request.body.site);
         var skills = xss(request.body.skills); 
         var note = xss(request.body.note);
         var reminder = request.body.reminder;
-        console.log("reminder"+reminder);
+        //console.log("reminder"+reminder);
         var followOn = request.body.followOn;
 
         myData.insertForm_forUser(username,company,contact,email,appliedOn,status,site,skills,note,followOn,reminder).then(function(user) {
@@ -265,13 +265,13 @@ app.post("/form/update", function (request, response){
         var contact = xss(request.body.contact);
         var email = xss(request.body.email);
         var appliedOn = request.body.appliedOn;
-        console.log("applied on"+appliedOn);
+        //console.log("applied on"+appliedOn);
         var status = request.body.status;
         var site = xss(request.body.site);
         var skills = xss(request.body.skills); 
         var note = xss(request.body.note);
         var reminder = xss(request.body.reminder);
-        console.log("reminder"+reminder);
+        //console.log("reminder"+reminder);
         var followOn = request.body.followOn;
 
         myData.updateForm_forUser(id,company,contact,email,appliedOn,status,site,skills,note,followOn,reminder).then(function(id) {
@@ -301,22 +301,22 @@ app.post("/profile", function (request, response){
 
     var username = app.locals.username;
     var fullName = request.body.fullName;
-    console.log("name: "+fullName);
+    //console.log("name: "+fullName);
     var email = request.body.email;
     var collegeName = request.body.collegeName;
-    console.log("emailId: "+email);
+    //console.log("emailId: "+email);
     var degree = request.body.degree;
     var skills = request.body.skills; 
     var jobTitle = request.body.jobTitle;
     var companyName = request.body.companyName;
-    console.log("companyName: "+companyName);
+    //console.log("companyName: "+companyName);
     var experienceYears = request.body.experienceYears;
 
     myData.updateUserProfile(username,fullName,email,collegeName,degree,skills,jobTitle,companyName,experienceYears).then(function(profile) {
-        console.log(profile);
+        //console.log(profile);
         response.redirect("/dashboard");
     }, function(errorMessage) {
-        console.log("errorMessage");
+        //console.log("errorMessage");
         response.redirect("/profile");
     });
 });
@@ -334,15 +334,15 @@ app.post("/login", function (request, response) {
             bcrypt.compare(request.body.pass, user.encryptedPassword, function (err, result) {
                 if (result === true) {
                     console.log("Passwords matches the hash, user id = "+user._id);
-                    console.log("login user session"+user.currentSessionId);
+                    //console.log("login user session"+user.currentSessionId);
                     var expiresAt = new Date();
-                    expiresAt.setMinutes(expiresAt.getMinutes()+10);
+                    expiresAt.setMinutes(expiresAt.getMinutes()+2);
                     response.cookie("currentSessionId", user.currentSessionId, {expires: expiresAt});
                     app.locals.username = request.body.username;
                     app.locals.userSession = user.currentSessionId;
                     app.locals.accountCreation= user.accountCreation;
                     app.locals.admin = user.admin;
-                    console.log("login user session"+user.currentSessionId);
+                    //console.log("login user session"+user.currentSessionId);
                     response.redirect("/dashboard");
                 } else {
                     response.render("pages/index", {layout: false, pageTitle: "User Login and Profile system", _error: "Passwords do not match!" });
@@ -360,11 +360,11 @@ app.post("/signup", function (request, response,next) {
     var hash = bcrypt.hashSync(request.body.pass);
     var usrnm = request.body.username;
     myData.userExists(usrnm).then(function(){
-        console.log("signup"+app.locals.userSession);
+        //console.log("signup"+app.locals.userSession);
         var userStatus = 0;
         var accountCreation = new Date();
         myData.createUser(usrnm, hash, userStatus, accountCreation).then(function(user){
-            console.log("New User="+user.username);
+            //console.log("New User="+user.username);
             myData.insertSessionID(user._id,app.locals.userSession).then(function(updated){
             });
             app.locals.username = request.body.username;
@@ -383,7 +383,7 @@ app.post("/signup", function (request, response,next) {
 
 app.all("/logout", function(request, response){
 
-        console.log("now clearing the cookie");
+        //console.log("now clearing the cookie");
         
         var expiresAt = new Date();
         expiresAt.setMinutes(expiresAt.getMinutes() -50);
@@ -414,8 +414,8 @@ app.post('/photo', upload.single('userPhoto'), function (request, response) {
 
 app.get("/test", function (request, response) { 
 
-  console.log("name "+app.locals.username);
-  console.log(request.cookies.currentSessionId);
+  //console.log("name "+app.locals.username);
+  //console.log(request.cookies.currentSessionId);
       
 });
 

@@ -14,7 +14,7 @@
                                 <i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i> Tables
+                                <i class="fa fa-table"></i> My List
                             </li>
                         </ol>
                     </div>
@@ -62,12 +62,25 @@
                                                     status="Default";
                                                     break;
                                             }
+                                            var reminderSet;
+                                            switch (applicationList[i].remind) 
+                                            {
+                                                case "1":
+                                                    reminderSet="Yes";
+                                                    break;
+                                                case "2":
+                                                    reminderSet="No";
+                                                    break;
+                                                default:
+                                                    status="Default";
+                                                    break;
+                                            }
                                         }
                                       %>
                                       <td><%= applicationList[i].appliedOn %></td>
                                       <td><%= status %></td>
-                                      <td><%= applicationList[i].followUpOn %></td>
-                                      <td><%= applicationList[i].remind %></td>
+                                      <td><%= applicationList[i].followUpOn %></td>                                     
+                                      <td><%= reminderSet %></td>
                                     </tr>    
                                     <% } %>
                                 </tbody>
@@ -201,7 +214,7 @@
                             Close
                 </button>
                 <button id="save" type="button" class="btn btn-primary">
-                    Save changes
+                    Save Changes
                 </button>
             </div>
         </div>
