@@ -16,7 +16,6 @@ A boilerplate to use in CS-546 Assignments
  6. Check application summary under "My Lists" 
  7. Check "My Lists" 
  8. Logout using "Logout" button on top right corner
- 9. 
  
 ****************************************************************
 Technology: Twitter Bootstrap(front-end), Express (server), JavaScript, Node.js, EJS, jQuery, AJAX(asynchronous form submission), MongoDB(database)
